@@ -1,0 +1,13 @@
+[ ] Hacer los vertices con este vidio : https://www.youtube.com/watch?v=45MIykWJ-C4 14:00 - 29:00
+
+[ ] Hacer la clase Pixel
+    -- Posicion (X, Y)
+    -- Color (RGBA)
+
+
+ 
+[] Hacer la clase boilerplate code
+
+[] Multidimensional arrays: https://www.youtube.com/watch?v=fINt-nzR-o8
+
+tupla error = https://stackoverflow.com/questions/65920834/no-template-named-tuple-in-c
