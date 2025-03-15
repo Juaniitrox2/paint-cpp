@@ -7,6 +7,7 @@ int main() {
     Color* red = new Color(255, 0, 0, 0);
     Screen test_screen(500, 500);
     //test_screen.setColor(white);
+
     
     for (int y = 250; y <= 300; y++) {
         for (int x = 50; x <= 100; x++) {
