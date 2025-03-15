@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.10)
+project(paintdih)
+
+# Include OpenGL and GLAD
+find_package(OpenGL REQUIRED)
+include_directories(${OPENGL_INCLUDE_DIRS})
+
+# Add all .cpp files
+file(GLOB SOURCES "src/*.cpp")
+
+# Add the executable
+add_executable(paintdih ${SOURCES} src/glad.c)
+
+# Link OpenGL libraries
+target_link_libraries(paintdih OpenGL::GL)

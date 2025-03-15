@@ -1,13 +1,22 @@
 #include "pixel.hpp"
+#include "Classes/color/color.hpp"
 #include <tuple>
 #include <iostream>
 using namespace std;
 
-Pixel::Pixel(tuple<int, int> position, tuple<float, float, float, float> color) {
-    position = position;
-    color = color;
+Pixel::Pixel() {
+
 }
 
-void Pixel::setPixel(float red , float green, float blue, float opacity) {
-    color = make_tuple(red, green, blue, opacity);
+Pixel::Pixel(tuple<int, int> position, Color color) {
+    this->position = position;
+    this->color = color;
+}
+
+void Pixel::setColor(Color color) {
+    this->color = color;
+}
+
+Pixel::~Pixel() {
+
 }

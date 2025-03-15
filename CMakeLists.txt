@@ -11,6 +11,9 @@ add_executable(paintdih
     src/main.cpp 
     src/glad.h 
     src/glad.c
+    src/Classes/screen/screen.cpp
+    src/Classes/pixel/pixel.cpp
+    src/Classes/color/color.cpp
 )
 
 target_link_libraries(paintdih 

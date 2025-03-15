@@ -1,15 +1,18 @@
 #pragma once
 #include <iostream>
+#include "Classes/color/color.hpp"
 using namespace std;
 /** 
 * Clase pixel
 */
 class Pixel {
+
     public:
-    Pixel() : position(0,0), color(0,0,0,0) {};
-    Pixel(tuple<int, int> position, tuple<float, float, float, float> color) {}
+    Pixel();
+    Pixel(tuple<int, int> position, tuple<float, float, float, float> color);
+    ~Pixel();
     int id;
-    void setPixel(float red, float green, float blue, float opacity) {};
+    void setColor(Color color);
 
     private:
 
