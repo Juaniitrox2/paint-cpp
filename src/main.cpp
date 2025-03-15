@@ -3,7 +3,7 @@
 
 int main() {
     Screen test_screen(35, 10);
-    test_screen.printScreen();
+    test_screen.getPixel(1, 1);
 
-    return 0;
+    return 1;
 }

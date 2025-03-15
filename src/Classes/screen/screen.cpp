@@ -24,7 +24,6 @@ void Screen::setColor(float r, float g, float b, float a) {
     color = std::make_tuple(r, g, b, a);
 }
 
-
 Screen::~Screen(){
     for (int x = 0;x < width; x++){
         delete[] screen_pixels[x];

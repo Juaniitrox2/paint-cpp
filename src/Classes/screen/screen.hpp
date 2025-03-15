@@ -13,8 +13,8 @@ class Screen {
     /**
     * @brief Printea la screen
     */
-    void printScreen();
     Pixel& getPixel(int x, int y);
+    void printScreen();
 
     // Datos
     int width;
