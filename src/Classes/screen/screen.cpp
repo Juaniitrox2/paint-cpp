@@ -20,6 +20,8 @@ Screen::Screen(int width, int height) {
     // Reservar memoria para la matriz de píxeles
     this->screen_pixels = new Pixel*[width];
 
+    this->pixel_buffer = new float[this->width * this->height * 3];
+
     for (int x = 0; x < width; x++) {
         this->screen_pixels[x] = new Pixel[height]; // This will still fail without a default constructor
     }
@@ -41,7 +43,7 @@ void Screen::start() {
         glfwPollEvents();
         
         glClear(GL_COLOR_BUFFER_BIT);
-        glDrawPixels(this->width, this->height, GL_RGB, GL_FLOAT, this->pixel_buffer)
+        glDrawPixels(this->width, this->height, GL_RGB, GL_FLOAT, this->pixel_buffer);
 
         glfwSwapBuffers(window);
     }
@@ -49,11 +51,13 @@ void Screen::start() {
     glfwTerminate();
 }
 
-void Screen::setPixelColor(int x, int y, Color color) {
+void Screen::setPixelColor(int x, int y, Color* color) {
     int pixelLocation;
     
     pixelLocation = (y * this->width * 3) + (x * 3);
-    this->pixel_buffer[1] = 0
+    this->pixel_buffer[pixelLocation + 0] = color->r;
+    this->pixel_buffer[pixelLocation + 1] = color->g;
+    this->pixel_buffer[pixelLocation + 2] = color->b;
 }
 
 void Screen::printScreen() {

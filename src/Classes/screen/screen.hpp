@@ -19,7 +19,7 @@ class Screen {
     * @brief Printea la screen
     */
     Pixel& getPixel(int x, int y);
-    void setPixelColor(int x, int y, Color color);
+    void setPixelColor(int x, int y, Color* color);
     void printScreen();
     void start();
 
@@ -29,6 +29,6 @@ class Screen {
 
     GLFWwindow* window;
     Pixel** screen_pixels;
-    float** pixel_buffer;
+    float* pixel_buffer;
     tuple <float, float,float,float> color;
 };

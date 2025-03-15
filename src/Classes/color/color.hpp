@@ -12,6 +12,7 @@ class Color {
         float b;
         float a;
 
+    Color();
     Color(int r, int g, int b, int a);
     ~Color();
 };

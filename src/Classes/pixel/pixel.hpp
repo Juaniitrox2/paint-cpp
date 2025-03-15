@@ -9,7 +9,7 @@ class Pixel {
 
     public:
     Pixel();
-    Pixel(tuple<int, int> position, tuple<float, float, float, float> color);
+    Pixel(tuple<int, int> position, Color color);
     ~Pixel();
     int id;
     void setColor(Color color);
@@ -17,5 +17,5 @@ class Pixel {
     private:
 
     tuple<int, int> position;             
-    tuple<float, float, float, float> color;
+    Color color;
 };

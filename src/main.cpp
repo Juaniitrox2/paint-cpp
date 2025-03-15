@@ -4,8 +4,16 @@
 
 int main() {
     Color white(255, 255, 255, 120);
+    Color* red = new Color(255, 0, 0, 0);
     Screen test_screen(500, 500);
-    test_screen.setColor(white);
+    //test_screen.setColor(white);
+
+    //for (int y; y < 50; y++) {
+        for (int x = 50; x < 100; x++) {
+            test_screen.setPixelColor(x, 250, red);
+        }
+    //}
+    
     test_screen.start();
 
     return 1;
