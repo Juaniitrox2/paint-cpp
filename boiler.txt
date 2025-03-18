@@ -5,6 +5,15 @@ project(paintdih)
 find_package(OpenGL REQUIRED)
 include_directories(${OPENGL_INCLUDE_DIRS})
 
+add_executable(paintdih 
+    src/main.cpp 
+    src/glad.h 
+    src/glad.c
+    src/Classes/screen/screen.cpp
+    src/Classes/pixel/pixel.cpp
+    src/Classes/color/color.cpp
+)
+
 # Add all .cpp files
 file(GLOB SOURCES "src/*.cpp")
 

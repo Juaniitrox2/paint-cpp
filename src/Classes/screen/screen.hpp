@@ -6,6 +6,8 @@
 #include "glad.h"
 #include <GLFW/glfw3.h>
 
+class Tasks;
+
 /**
 *clase pantalla tiene pixeles
 */
@@ -20,6 +22,7 @@ class Screen {
     */
     Pixel& getPixel(int x, int y);
     void setPixelColor(int x, int y, Color* color);
+    void setAreaColor(int pos_x, int pos_y, int size_x, int size_y, Color* color);
     void printScreen();
     void start();
 

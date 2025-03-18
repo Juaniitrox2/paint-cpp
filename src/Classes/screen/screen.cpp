@@ -1,6 +1,7 @@
 #include "screen.hpp"
 #include "../pixel/pixel.hpp"
 #include "glad.h"
+#include "../tasks/tasks.hpp"
 #include <GLFW/glfw3.h>
 #include "../color/color.hpp"
 #include <tuple>
@@ -38,6 +39,9 @@ Screen::Screen(int width, int height) {
 }
 
 void Screen::start() {
+    Tasks task_manager(this);
+
+    task_manager.start();
 
     while (!glfwWindowShouldClose(window)){
         glfwPollEvents();
@@ -58,6 +62,14 @@ void Screen::setPixelColor(int x, int y, Color* color) {
     this->pixel_buffer[pixelLocation + 0] = color->r;
     this->pixel_buffer[pixelLocation + 1] = color->g;
     this->pixel_buffer[pixelLocation + 2] = color->b;
+}
+
+void Screen::setAreaColor(int pos_x, int pos_y, int size_x, int size_y, Color* color) {
+    for (int y = pos_y; y <= pos_y + size_y; y++) {
+        for (int x = pos_x; x <= pos_x + size_x; x++) {
+            this->setPixelColor(x, y, color);
+        }
+    }
 }
 
 void Screen::printScreen() {

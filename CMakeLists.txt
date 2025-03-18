@@ -5,16 +5,11 @@ cmake_policy(SET CMP0072 NEW)
 
 include_directories(src)
 
+# Find all .cpp files in the src directory
+file(GLOB SOURCES "src/*.cpp" "src/Classes/*/*.cpp" "src/glad.h" "src/glad.c")
 find_package(OpenGL REQUIRED)
 
-add_executable(paintdih 
-    src/main.cpp 
-    src/glad.h 
-    src/glad.c
-    src/Classes/screen/screen.cpp
-    src/Classes/pixel/pixel.cpp
-    src/Classes/color/color.cpp
-)
+add_executable(paintdih ${SOURCES})
 
 target_link_libraries(paintdih 
     glfw

@@ -3,17 +3,13 @@
 #include "Classes/color/color.hpp"
 
 int main() {
-    Color white(255, 255, 255, 120);
+    Color* white = new Color(255, 255, 255, 120);
     Color* red = new Color(255, 0, 0, 0);
-    Screen test_screen(500, 500);
+    Screen test_screen(1000, 1000);
     //test_screen.setColor(white);
 
-    
-    for (int y = 250; y <= 300; y++) {
-        for (int x = 50; x <= 100; x++) {
-            test_screen.setPixelColor(x, y, red);
-        }
-    }
+    test_screen.setAreaColor(0, 100, 250, 250, white);
+    test_screen.setAreaColor(0, 95, 100, 100, red);
 
     test_screen.start();
 
