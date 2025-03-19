@@ -56,9 +56,13 @@ void Screen::start() {
 }
 
 void Screen::setPixelColor(int x, int y, Color* color) {
-    int pixelLocation;
-    
-    pixelLocation = (y * this->width * 3) + (x * 3);
+    if (x > this->width or x < 0 or y > this->height or y < 0) {
+        return;
+    }
+
+    int flippedY = this->height - 1 - y;
+
+    int pixelLocation = (flippedY * this->width * 3) + (x * 3);
     this->pixel_buffer[pixelLocation + 0] = color->r;
     this->pixel_buffer[pixelLocation + 1] = color->g;
     this->pixel_buffer[pixelLocation + 2] = color->b;

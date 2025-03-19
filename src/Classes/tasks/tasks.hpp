@@ -1,6 +1,7 @@
 #pragma once
 #include "glad.h"
 #include <GLFW/glfw3.h>
+#include "Classes/tool/tool.hpp"
 //#include "../screen/screen.hpp"
 
 class Screen;
@@ -21,6 +22,7 @@ class Tasks {
 
         //Event** getTranslatedEvents();
         Screen* active_screen;
+        Tool* active_tool;
     
     private:
         static void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
