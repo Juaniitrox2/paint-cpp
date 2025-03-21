@@ -56,7 +56,7 @@ void Screen::start() {
 }
 
 void Screen::setPixelColor(int x, int y, Color* color) {
-    if (x > this->width or x < 0 or y > this->height or y < 0) {
+    if (x >= this->width || x < 0 || y >= this->height || y < 0) {
         return;
     }
 
