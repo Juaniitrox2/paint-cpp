@@ -28,7 +28,7 @@ void Tasks::cursor_position_callback(GLFWwindow* window, double xpos, double ypo
     int eraser_active = glfwGetMouseButton(window, 1);
 
     if (tasks && tasks->active_screen && (mouse_button_state == 1 || eraser_active == 1)) {
-        Color* red = new Color(255, 0, 0, 0);
+        Color* red = new Color(255, 255, 0, 0);
         Color* nig = new Color(0, 0, 0, 0);
 
         Color* chosen_color = red;
