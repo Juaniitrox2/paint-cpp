@@ -28,7 +28,7 @@ Screen::Screen(int width, int height) {
     }
 
     // Screen window
-    this->window = glfwCreateWindow(this->width, this->height, "Paint Dih", NULL, NULL);
+    this->window = glfwCreateWindow(this->width, this->height, "Paint Bloatwave", NULL, NULL);
     glfwMakeContextCurrent(this->window);
 
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)){
@@ -62,7 +62,7 @@ void Screen::setPixelColor(int x, int y, Color* color) {
 
     int flippedY = this->height - 1 - y;
 
-    int pixelLocation = (flippedY * this->width * 3) + (x * 3);
+    unsigned int pixelLocation = (flippedY * this->width * 3) + (x * 3);
     this->pixel_buffer[pixelLocation + 0] = color->r;
     this->pixel_buffer[pixelLocation + 1] = color->g;
     this->pixel_buffer[pixelLocation + 2] = color->b;

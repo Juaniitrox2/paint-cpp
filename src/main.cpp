@@ -11,5 +11,5 @@ int main() {
 
     test_screen.start();
 
-    return 1;
+    return 0;
 }
