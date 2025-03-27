@@ -29,11 +29,11 @@ void Tasks::cursor_position_callback(GLFWwindow* window, double xpos, double ypo
 
     if (tasks && tasks->active_screen && (mouse_button_state == 1 || eraser_active == 1)) {
         Color* red = new Color(255, 255, 0, 0);
-        Color* nig = new Color(0, 0, 0, 0);
+        Color* dark = new Color(0, 0, 0, 0);
 
         Color* chosen_color = red;
         if (eraser_active == 1) {
-            chosen_color = nig;
+            chosen_color = dark;
         }
         
         int pos_x = static_cast<int>(xpos);
@@ -46,10 +46,15 @@ void Tasks::cursor_position_callback(GLFWwindow* window, double xpos, double ypo
 }
 
 void Tasks::connectEvents() {
-    if (active_screen && active_screen->window) {
-        glfwSetWindowUserPointer(active_screen->window, this);
-        glfwSetCursorPosCallback(active_screen->window, Tasks::cursor_position_callback);
-    }
+    std::cout << "todo fix evfents" << std::endl;
+    //if (active_screen && active_screen->getFocusedWindow()) {
+        // Window focused_window = active_screen->getFocusedWindow();
+
+
+        // std::cout << "FIX POINTERS" << std::endl;
+        //glfwSetWindowUserPointer(active_screen->window, this);
+        //glfwSetCursorPosCallback(active_screen->window, Tasks::cursor_position_callback);
+    //}
 }
 
 Tasks::~Tasks() {}

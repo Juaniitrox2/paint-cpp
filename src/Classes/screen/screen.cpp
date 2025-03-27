@@ -5,8 +5,9 @@
 #include <GLFW/glfw3.h>
 #include "../color/color.hpp"
 #include <tuple>
+#include "Classes/window/window.hpp"
 
-Screen::Screen(int width, int height) {
+Screen::Screen(unsigned int width, unsigned int height) {
     if (!glfwInit()){
         return;
     }   
@@ -27,15 +28,9 @@ Screen::Screen(int width, int height) {
         this->screen_pixels[x] = new Pixel[height]; // This will still fail without a default constructor
     }
 
-    // Screen window
-    this->window = glfwCreateWindow(this->width, this->height, "Paint Bloatwave", NULL, NULL);
-    glfwMakeContextCurrent(this->window);
+    Window main_window(width, height, "Bloatwave Paint");
 
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)){
-        std::cout << "Could not load opengl"<< std::endl;
-        glfwTerminate();
-        return;
-    }
+    this->windows.push_back(main_window);
 }
 
 void Screen::start() {
@@ -43,13 +38,21 @@ void Screen::start() {
 
     task_manager.start();
 
-    while (!glfwWindowShouldClose(window)){
+    while (this->windows.size() > 0){
         glfwPollEvents();
         
-        glClear(GL_COLOR_BUFFER_BIT);
-        glDrawPixels(this->width, this->height, GL_RGB, GL_FLOAT, this->pixel_buffer);
+        int vector_size = this->windows.size();
+        for (unsigned int i = 0; i < vector_size; i++) {
+            Window program_window = this->windows.at(i);
 
-        glfwSwapBuffers(window);
+            if (program_window.isFocused()) {
+                program_window.update();
+            }
+
+            if (glfwGetCurrentContext() == NULL && program_window.isVisible()) {
+                program_window.focus();
+            }
+        }
     }
 
     glfwTerminate();
@@ -76,8 +79,15 @@ void Screen::setAreaColor(int pos_x, int pos_y, int size_x, int size_y, Color* c
     }
 }
 
-void Screen::printScreen() {
-    std::cout << "hello!" << std::endl;
+Window Screen::getFocusedWindow() {
+    int vector_size = this->windows.size();
+    for (unsigned int i = 0; i < vector_size; i++) {
+        Window program_window = this->windows.at(i);
+
+        if (program_window.isFocused()) {
+            return program_window;
+        }
+    }
 }
 
 void Screen::setColor(Color color) {
