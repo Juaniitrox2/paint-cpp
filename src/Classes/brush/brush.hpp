@@ -1,5 +1,5 @@
 #include "Classes/tool/tool.hpp"
-#include "Classes/screen/screen.hpp"
+#include "Classes/window/window.hpp"
 #include "Classes/color/color.hpp"
 
 class Brush : public Tool {
@@ -9,7 +9,7 @@ class Brush : public Tool {
     Brush();
     Brush(int size);
     ~Brush();
-    void Use(Screen* screen, int pos_x, int pos_y, Color* color) override;
+    void Use(Window* window, int pos_x, int pos_y, Color* color) override;
 
     private:
     int brush_size;

@@ -19,11 +19,10 @@ class Screen {
         ~Screen();
 
         void setColor(Color color);
-        void setPixelColor(int x, int y, Color* color);
-        void setAreaColor(int pos_x, int pos_y, int size_x, int size_y, Color* color);
         void start();
         Pixel& getPixel(int x, int y);
-        Window getFocusedWindow();
+        Window* getFocusedWindow();
+        Window* getWindowFromGL(GLFWwindow* gl_window);
 
         // Datos
     private:
@@ -31,7 +30,7 @@ class Screen {
         unsigned int height;
 
 
-        vector<Window> windows;
+        vector<Window*> windows;
         Pixel** screen_pixels;
         float* pixel_buffer;
 };

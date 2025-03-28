@@ -39,22 +39,24 @@ void Tasks::cursor_position_callback(GLFWwindow* window, double xpos, double ypo
         int pos_x = static_cast<int>(xpos);
         int pos_y = static_cast<int>(ypos);
 
-        tasks->active_tool->Use(tasks->active_screen, pos_x, pos_y, chosen_color);
+        Window* screen_window = tasks->active_screen->getWindowFromGL(window);
+
+        screen_window->setAreaColor(pos_x, pos_y, 4, 4, chosen_color);
+        //tasks->active_tool->Use(screen_window, pos_x, pos_y, chosen_color);
         //std::cout << "X:  " << xpos << " Y: " << ypos << std::endl;
         //tasks->active_screen->setAreaColor(static_cast<int>(xpos) - 2, static_cast<int>(ypos) - 2, 4, 4, chosen_color);
     }
 }
 
 void Tasks::connectEvents() {
-    std::cout << "todo fix evfents" << std::endl;
-    //if (active_screen && active_screen->getFocusedWindow()) {
-        // Window focused_window = active_screen->getFocusedWindow();
+    if (active_screen && active_screen->getFocusedWindow()) {
+        Window* focused_window = active_screen->getFocusedWindow();
 
 
         // std::cout << "FIX POINTERS" << std::endl;
-        //glfwSetWindowUserPointer(active_screen->window, this);
-        //glfwSetCursorPosCallback(active_screen->window, Tasks::cursor_position_callback);
-    //}
+        glfwSetWindowUserPointer(focused_window->getGLWindow(), this);
+        glfwSetCursorPosCallback(focused_window->getGLWindow(), Tasks::cursor_position_callback);
+    }
 }
 
 Tasks::~Tasks() {}
