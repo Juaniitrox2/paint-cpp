@@ -10,6 +10,7 @@ Button::~Button() {}
 Button::Button(Vector2 position, Vector2 size) {
     this->position = position;
     this->size = size;
+    this->clicked_callback = NULL;
 }
 
 bool Button::isPositionInButton(Vector2* position) {
@@ -30,7 +31,7 @@ void Button::setCallback(Callback new_callback) {
 void Button::trigger(Screen* screen, int mouse_button) {
     cout << mouse_button << " pressed!" << endl;
 
-    if (clicked_callback) {
+    if (clicked_callback && clicked_callback != NULL) {
         clicked_callback(screen, mouse_button);
     }
 }

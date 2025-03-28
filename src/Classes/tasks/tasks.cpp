@@ -36,7 +36,9 @@ void Tasks::cursor_position_callback(GLFWwindow* window, double xpos, double ypo
     int mouse_button_state = glfwGetMouseButton(window, 0);
     int eraser_active = glfwGetMouseButton(window, 1);
     
-    cout << tasks->button->isPositionInButton(mouse_position) << endl;
+    if (tasks->button->isPositionInButton(mouse_position) && mouse_button_state) {
+        tasks->button->trigger(tasks->active_screen, 1);
+    }
 
     if (tasks && tasks->active_screen && (mouse_button_state == 1 || eraser_active == 1)) {
         Color* red = new Color(255, 255, 0, 0);
