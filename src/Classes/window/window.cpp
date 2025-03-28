@@ -18,7 +18,7 @@ Window::Window(unsigned int width, unsigned int height, std::string name) {
     this->name = name;
 
     this->pixel_buffer = new float[this->width * this->height * 3];
-    this->window_object = glfwCreateWindow(this->width, this->height, "Paint Bloatwave Window", NULL, NULL);
+    this->window_object = glfwCreateWindow(this->width, this->height, name.c_str(), NULL, NULL);
     
     if (!this->window_object) {
         cout << "Error loading window" << endl;

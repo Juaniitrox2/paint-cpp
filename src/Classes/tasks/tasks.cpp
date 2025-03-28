@@ -5,11 +5,12 @@
 #include <iostream>
 #include "Classes/color/color.hpp"
 #include "Classes/brush/brush.hpp"
+#include "Classes/vector2/vector2.hpp"
 
 
 Tasks::Tasks() {}
 Tasks::Tasks(Screen* screen){
-    this->active_tool = new Brush(4);
+    this->active_tool = new Brush(8);
     this->active_screen = screen;
 }
 
@@ -24,6 +25,8 @@ Tasks* getActiveTaskManager(GLFWwindow* window) {
 
 void Tasks::cursor_position_callback(GLFWwindow* window, double xpos, double ypos) {
     Tasks* tasks = getActiveTaskManager(window);
+
+    Vector2* mouse_position = new Vector2(xpos, ypos);
     int mouse_button_state = glfwGetMouseButton(window, 0);
     int eraser_active = glfwGetMouseButton(window, 1);
 
@@ -41,8 +44,8 @@ void Tasks::cursor_position_callback(GLFWwindow* window, double xpos, double ypo
 
         Window* screen_window = tasks->active_screen->getWindowFromGL(window);
 
-        screen_window->setAreaColor(pos_x, pos_y, 4, 4, chosen_color);
-        //tasks->active_tool->Use(screen_window, pos_x, pos_y, chosen_color);
+        //screen_window->setAreaColor(pos_x, pos_y, 4, 4, chosen_color);
+        tasks->active_tool->Use(screen_window, mouse_position, chosen_color);
         //std::cout << "X:  " << xpos << " Y: " << ypos << std::endl;
         //tasks->active_screen->setAreaColor(static_cast<int>(xpos) - 2, static_cast<int>(ypos) - 2, 4, 4, chosen_color);
     }

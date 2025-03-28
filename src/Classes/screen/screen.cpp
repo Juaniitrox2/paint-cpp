@@ -32,7 +32,11 @@ Screen::Screen(unsigned int width, unsigned int height) {
         this->screen_pixels[x] = new Pixel[height]; // This will still fail without a default constructor
     }
 
-    Window* main_window = new Window(width, height, "Bloatwave Paint");
+    this->newWindow(width, height, "Main Window");
+}
+
+void Screen::newWindow(unsigned int width, unsigned int height, std::string name) {
+    Window* main_window = new Window(width, height, name);
 
     this->windows.push_back(main_window);
 }
