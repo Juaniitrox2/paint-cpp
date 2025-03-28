@@ -48,12 +48,10 @@ void Screen::start() {
             Window* program_window = this->windows.at(i);
 
             if (program_window->isFocused()) {
-                Color* red = new Color(255, 0, 0, 0);
                 program_window->update();
             }
 
             if (glfwGetCurrentContext() == NULL && program_window->isVisible()) {
-                std::cout << "focused!" << endl;
                 program_window->focus();
             }
         }
