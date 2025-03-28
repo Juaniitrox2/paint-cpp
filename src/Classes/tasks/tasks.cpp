@@ -6,12 +6,18 @@
 #include "Classes/color/color.hpp"
 #include "Classes/brush/brush.hpp"
 #include "Classes/vector2/vector2.hpp"
+#include "Classes/button/button.hpp"
 
+using namespace std;
 
 Tasks::Tasks() {}
 Tasks::Tasks(Screen* screen){
     this->active_tool = new Brush(8);
     this->active_screen = screen;
+
+    Vector2 button_pos(15, 15);
+    Vector2 button_size(50, 50);
+    this->button = new Button(button_pos, button_size);
 }
 
 void Tasks::start() {
@@ -29,6 +35,8 @@ void Tasks::cursor_position_callback(GLFWwindow* window, double xpos, double ypo
     Vector2* mouse_position = new Vector2(xpos, ypos);
     int mouse_button_state = glfwGetMouseButton(window, 0);
     int eraser_active = glfwGetMouseButton(window, 1);
+    
+    cout << tasks->button->isPositionInButton(mouse_position) << endl;
 
     if (tasks && tasks->active_screen && (mouse_button_state == 1 || eraser_active == 1)) {
         Color* red = new Color(255, 255, 0, 0);

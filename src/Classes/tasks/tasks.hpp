@@ -2,7 +2,7 @@
 #include "glad.h"
 #include <GLFW/glfw3.h>
 #include "Classes/tool/tool.hpp"
-//#include "../screen/screen.hpp"
+#include "Classes/button/button.hpp"
 
 class Screen;
 
@@ -23,7 +23,8 @@ class Tasks {
         //Event** getTranslatedEvents();
         Screen* active_screen;
         Tool* active_tool;
-    
+        Button* button;
+
     private:
         static void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
 };
