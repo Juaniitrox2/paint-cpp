@@ -18,6 +18,10 @@ Tasks::Tasks(Screen* screen){
     Vector2 button_pos(15, 15);
     Vector2 button_size(50, 50);
     this->button = new Button(button_pos, button_size);
+
+    this->button->setCallback([](Screen* screen, int mouse_button) {
+        screen->newWindow(150, 150, "Whatsapp");
+    });
 }
 
 void Tasks::start() {
@@ -29,6 +33,10 @@ Tasks* getActiveTaskManager(GLFWwindow* window) {
     return static_cast<Tasks*>(glfwGetWindowUserPointer(window));
 }
 
+void Tasks::update(Screen* screen) {
+    this->button->update(screen);
+}
+
 void Tasks::cursor_position_callback(GLFWwindow* window, double xpos, double ypos) {
     Tasks* tasks = getActiveTaskManager(window);
 
@@ -36,8 +44,12 @@ void Tasks::cursor_position_callback(GLFWwindow* window, double xpos, double ypo
     int mouse_button_state = glfwGetMouseButton(window, 0);
     int eraser_active = glfwGetMouseButton(window, 1);
     
-    if (tasks->button->isPositionInButton(mouse_position) && mouse_button_state) {
-        tasks->button->trigger(tasks->active_screen, 1);
+    if (tasks->button && tasks->button->isPositionInRect(mouse_position)) {
+        if (mouse_button_state == 1) {
+            tasks->button->trigger(tasks->active_screen, 1);
+        } else if (mouse_button_state == 0) {
+            tasks->button->release();
+        }
     }
 
     if (tasks && tasks->active_screen && (mouse_button_state == 1 || eraser_active == 1)) {
@@ -59,6 +71,8 @@ void Tasks::cursor_position_callback(GLFWwindow* window, double xpos, double ypo
         //std::cout << "X:  " << xpos << " Y: " << ypos << std::endl;
         //tasks->active_screen->setAreaColor(static_cast<int>(xpos) - 2, static_cast<int>(ypos) - 2, 4, 4, chosen_color);
     }
+
+    tasks->update(tasks->active_screen);
 }
 
 void Tasks::connectEvents() {

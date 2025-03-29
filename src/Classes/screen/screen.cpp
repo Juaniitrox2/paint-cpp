@@ -35,10 +35,12 @@ Screen::Screen(unsigned int width, unsigned int height) {
     this->newWindow(width, height, "Main Window");
 }
 
-void Screen::newWindow(unsigned int width, unsigned int height, std::string name) {
-    Window* main_window = new Window(width, height, name);
+Window* Screen::newWindow(unsigned int width, unsigned int height, std::string name) {
+    Window* window_instance = new Window(width, height, name);
 
-    this->windows.push_back(main_window);
+    this->windows.push_back(window_instance);
+
+    return window_instance;
 }
 
 void Screen::start() {
@@ -48,17 +50,20 @@ void Screen::start() {
 
     while (this->windows.size() > 0){
         int vector_size = this->windows.size();
+        //task_manager.update(this);
+        
         for (unsigned int i = 0; i < vector_size; i++) {
             Window* program_window = this->windows.at(i);
-
+            
             if (program_window->isFocused()) {
                 program_window->update();
             }
-
+            
             if (glfwGetCurrentContext() == NULL && program_window->isVisible()) {
                 program_window->focus();
             }
         }
+        
 
         if (glfwGetCurrentContext() == NULL) break;
     }

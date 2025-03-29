@@ -20,8 +20,8 @@ class Screen {
 
         void setColor(Color color);
         void start();
-        void newWindow(unsigned int width, unsigned int height, std::string name);
         Pixel& getPixel(int x, int y);
+        Window* newWindow(unsigned int width, unsigned int height, std::string name);
         Window* getFocusedWindow();
         Window* getWindowFromGL(GLFWwindow* gl_window);
 

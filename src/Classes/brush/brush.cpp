@@ -3,6 +3,23 @@
 #include "Classes/color/color.hpp"
 #include "Classes/vector2/vector2.hpp"
 #include "brush.hpp"
+#include <vector>
+#include <cmath>
+
+std::vector<float> generateVertices(float x, float y, float radius, int segments) {
+    std::vector<float> array;
+
+    for (int i = 0; i < segments; i++) {
+        float theta = 2.00f * M_PI * float(i) / float(segments);
+        float vertex_x = radius * cosf(theta);
+        float vertex_y = radius * sinf(theta);
+
+        array.push_back(vertex_x);
+        array.push_back(vertex_y);
+    }
+
+    return array;
+}
 
 Brush::Brush() {}
 Brush::~Brush() {}
@@ -11,10 +28,11 @@ Brush::Brush(int size) {
 }
 
 void Brush::Use(Window* window, Vector2* position, Color* color) {
-    int thickness = this->brush_size;
+    float nx = (position->x / window->width) * 2.0f - 1.0f;
+    float ny = (position->y / window->height) * 2.0f - 1.0f;
+    
+    std::vector<float> vertices = generateVertices(nx, ny, 1.0f, 32);
 
-    int at_x = static_cast<int>(position->x) - this->brush_size/2;
-    int at_y = static_cast<int>(position->y) - this->brush_size/2;
-
-    window->setAreaColor(at_x, at_y, thickness, thickness, color);
+    //std::cout << "MOUSE AT (" << nx << ";" << ny << ")" << std::endl;
+    window->addBufferToRender(vertices);
 }

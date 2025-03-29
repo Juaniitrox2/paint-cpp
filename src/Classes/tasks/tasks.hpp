@@ -19,6 +19,7 @@ class Tasks {
 
         void connectEvents();
         void start();
+        void update(Screen* screen);
 
         //Event** getTranslatedEvents();
         Screen* active_screen;
